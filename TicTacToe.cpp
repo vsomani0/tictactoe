@@ -129,3 +129,21 @@ void TicTacToe::display() const
     }
     std::cout << std::endl;
 }
+int TicTacToe::playMove(Coordinates location) {
+char input;
+if (turnNumber % 2 == 1) {
+    input = 'X';
+}
+else {
+    input = 'O';
+}
+if (!isValidInput(location)) {
+    return 2;
+}
+if (board.at(location.row).at(location.col) != '-') {
+    return 1;
+}
+board.at(location.row).at(location.col) = input;
+turnNumber++;
+return 0;
+}

@@ -23,12 +23,15 @@ bool quickEnd{0};
 if (gameEnd == "yes" || gameEnd == "Yes" || gameEnd == "YEs" || gameEnd == "YES") {
     quickEnd = 1;
 }
-TwoPlayerTTT game(numRows, name, name2);
+TwoPlayerTTT game = TwoPlayerTTT(numRows, name, name2);
 std::cout << "Tic-Tac-Toe game started" << std::endl;
+game.display();
 return game;
 }
 int main() {
 TwoPlayerTTT game = initializeGame();
+std::cout << "second display" << std::endl;
+game.display();
 Coordinates location;
 int moveSuccess{};
 while (!game.boardFull()) {

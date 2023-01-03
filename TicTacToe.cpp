@@ -1,8 +1,16 @@
 #include "TicTacToe.h"
+#include "TwoPlayerTTT.h"
 
 TicTacToe::TicTacToe(int sides)
 {
-    std::vector<std::vector<char>> board(sides, std::vector<char>(sides, '-'));
+    std::vector<std::vector<char>> board(sides, std::vector<char>(sides));
+    for (int y = 0; y < board.size(); y++)
+    {
+        for (int x = 0; x < board[y].size(); x++)
+        {
+            board[y][x] = '-';
+        }
+    }
     turnNumber = 1;
 }
 bool TicTacToe::boardFull() const
@@ -27,7 +35,7 @@ void TicTacToe::newGame()
             board[y][x] = '-';
         }
     }
-    turnNumber = 0;
+    turnNumber = 1;
 }
 bool TicTacToe::isValidInput(Coordinates location) const
 {
@@ -124,8 +132,9 @@ void TicTacToe::display() const
     {
         for (int j = 0; j < board[i].size(); ++j)
         {
-            std::cout << board[i][j] << std::endl;;
+            std::cout << board[i][j];
         }
+        std::cout << std::endl;
     }
     std::cout << std::endl;
 }

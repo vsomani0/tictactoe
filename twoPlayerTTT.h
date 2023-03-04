@@ -5,10 +5,11 @@
 class TwoPlayerTTT: public TicTacToe {
 public:
 TwoPlayerTTT(int sides, std::string playerOneName, std::string playerTwoName);
-void newGame() override;
+void newGame();
 std::string playerToMove() const;
 std::string getPlayerOneName() const;
 std::string getPlayerTwoName() const;
+int numWins(std::string) const; 
 private:
 std::string playerOneName;
 std::string playerTwoName;

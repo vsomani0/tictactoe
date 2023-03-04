@@ -3,10 +3,10 @@
 
 TicTacToe::TicTacToe(int sides)
 {
-    std::vector<std::vector<char>> board(sides, std::vector<char>(sides));
-    for (int y = 0; y < board.size(); y++)
+    board = std::vector<std::vector<char>>(sides, std::vector<char>(sides));
+    for (unsigned y = 0; y < board.size(); y++)
     {
-        for (int x = 0; x < board[y].size(); x++)
+        for (unsigned x = 0; x < board[y].size(); x++)
         {
             board[y][x] = '-';
         }
@@ -28,9 +28,9 @@ int TicTacToe::getTurnNumber() const
 
 void TicTacToe::newGame()
 {
-    for (int y = 0; y < board.size(); y++)
+    for (unsigned y = 0; y < board.size(); y++)
     {
-        for (int x = 0; x < board[y].size(); x++)
+        for (unsigned x = 0; x < board[y].size(); x++)
         {
             board[y][x] = '-';
         }
@@ -51,9 +51,9 @@ bool TicTacToe::isValidInput(Coordinates location) const
 }
 int TicTacToe::numAltDiagonalWins(char side) const {
 int sumWins{};
-    for (int i = 2; i < board.size(); ++i)
+    for (unsigned i = 2; i < board.size(); ++i)
     { 
-        for (int j = 0; j < board.at(0).size(); ++j)
+        for (unsigned j = 0; j + 2 < board.at(0).size(); ++j)
         {
             if (board.at(i).at(j) && board.at(i-1).at(j+1) == side && board.at(i-2).at(j+2) == side)
             {
@@ -65,9 +65,9 @@ int sumWins{};
 }
 int TicTacToe::numMainDiagonalWins(char side) const {;
 int sumWins{};
-    for (int i = 0; i < board.size() - 2; ++i)
+    for (unsigned i = 0; i < board.size() - 2; ++i)
     { 
-        for (int j = 0; j < board.at(0).size() - 2; ++j)
+        for (unsigned j = 0; j < board.at(0).size() - 2; ++j)
         {
             if (board.at(i).at(j) && board.at(i+1).at(j+1) == side && board.at(i+2).at(j+2) == side)
             {
@@ -79,9 +79,9 @@ int sumWins{};
 }
 int TicTacToe::numHorizontalWins(char side) const {
 int sumWins{};
-    for (int i = 0; i < board.size() - 2; ++i)
+    for (unsigned i = 0; i < board.size() - 2; ++i)
     { 
-        for (int j = 0; j < board.at(0).size(); ++j)
+        for (unsigned j = 0; j < board.at(0).size(); ++j)
         {
             if (board.at(i).at(j) && board.at(i+1).at(j) == side && board.at(i+2).at(j) == side)
             {
@@ -93,9 +93,9 @@ int sumWins{};
 }
 int TicTacToe::numVerticalWins(char side) const {
 int sumWins{};
-    for (int i = 0; i < board.size(); ++i)
+    for (unsigned i = 0; i < board.size(); ++i)
     { 
-        for (int j = 0; j < board.at(0).size() - 2; ++j)
+        for (unsigned j = 0; j < board.at(0).size() - 2; ++j)
         {  
             if (board.at(i).at(j) && board.at(i).at(j+1) == side && board.at(i).at(j+2) == side)
             {
@@ -107,7 +107,7 @@ int sumWins{};
 }
 int TicTacToe::numWins(char side) const
 {
-    return numVerticalWins(side) + numHorizontalWins(side) + numAltDiagonalWins(side) + numMainDiagonalWins(side);
+    return numVerticalWins(side) + numHorizontalWins(side) + numMainDiagonalWins(side) + numAltDiagonalWins(side);
     // if ((board.at(0).at(0) == board.at(1).at(1)) && (board.at(1).at(1) == board.at(2).at(2)) && (board.at(0).at(0)!= '-')) {
     //         return true;
     // }
@@ -130,7 +130,7 @@ void TicTacToe::display() const
     unsigned int j{};
     for (i = 0; i < board.size(); ++i)
     {
-        for (int j = 0; j < board[i].size(); ++j)
+        for (unsigned j = 0; j < board[i].size(); ++j)
         {
             std::cout << board[i][j];
         }

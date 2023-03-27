@@ -1,6 +1,6 @@
 #include "TwoPlayerTTT.h"
 
-TwoPlayerTTT::TwoPlayerTTT(int sides, std::string playerOneName, std::string playerTwoName): TicTacToe(sides), playerOneName(playerOneName), playerTwoName(playerTwoName){}
+TwoPlayerTTT::TwoPlayerTTT(int sides, const std::string& playerOneName, const std::string& playerTwoName): TicTacToe(sides), playerOneName(playerOneName), playerTwoName(playerTwoName){}
 std::string TwoPlayerTTT::playerToMove() const {
 if (turnNumber % 2 == 1) {
     return playerOneName;

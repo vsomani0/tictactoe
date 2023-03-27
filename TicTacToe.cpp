@@ -1,6 +1,11 @@
 #include "TicTacToe.h"
-#include "TwoPlayerTTT.h"
 
+void TicTacToe::test() {
+    int x;
+    if (x == 0) {
+        x = 1;
+    }
+}
 TicTacToe::TicTacToe(int sides)
 {
     board = std::vector<std::vector<char>>(sides, std::vector<char>(sides));
@@ -37,7 +42,7 @@ void TicTacToe::newGame()
     }
     turnNumber = 1;
 }
-bool TicTacToe::isValidInput(Coordinates location) const
+bool TicTacToe::isValidInput(const Coordinates &location) const
 {
     if (location.row < 0 || location.row > board.size())
     {
@@ -49,81 +54,90 @@ bool TicTacToe::isValidInput(Coordinates location) const
     }
     return true;
 }
-int TicTacToe::numAltDiagonalWins(char side) const {
-int sumWins{};
-    for (unsigned i = 2; i < board.size(); ++i)
-    { 
-        for (unsigned j = 0; j + 2 < board.at(0).size(); ++j)
-        {
-            if (board.at(i).at(j) && board.at(i-1).at(j+1) == side && board.at(i-2).at(j+2) == side)
-            {
-                sumWins++;
-            }
-        }
-    }
-    return sumWins;
-}
-int TicTacToe::numMainDiagonalWins(char side) const {;
-int sumWins{};
-    for (unsigned i = 0; i < board.size() - 2; ++i)
-    { 
-        for (unsigned j = 0; j < board.at(0).size() - 2; ++j)
-        {
-            if (board.at(i).at(j) && board.at(i+1).at(j+1) == side && board.at(i+2).at(j+2) == side)
-            {
-                sumWins++;
-            }
-        }
-    }
-    return sumWins;
-}
-int TicTacToe::numHorizontalWins(char side) const {
-int sumWins{};
-    for (unsigned i = 0; i < board.size() - 2; ++i)
-    { 
-        for (unsigned j = 0; j < board.at(0).size(); ++j)
-        {
-            if (board.at(i).at(j) && board.at(i+1).at(j) == side && board.at(i+2).at(j) == side)
-            {
-                sumWins++;
-            }
-        }
-    }
-    return sumWins;
-}
-int TicTacToe::numVerticalWins(char side) const {
-int sumWins{};
-    for (unsigned i = 0; i < board.size(); ++i)
-    { 
-        for (unsigned j = 0; j < board.at(0).size() - 2; ++j)
-        {  
-            if (board.at(i).at(j) && board.at(i).at(j+1) == side && board.at(i).at(j+2) == side)
-            {
-                sumWins++;
-            }
-        }
-    }
-    return sumWins;
-}
 int TicTacToe::numWins(char side) const
 {
     return numVerticalWins(side) + numHorizontalWins(side) + numMainDiagonalWins(side) + numAltDiagonalWins(side);
-    // if ((board.at(0).at(0) == board.at(1).at(1)) && (board.at(1).at(1) == board.at(2).at(2)) && (board.at(0).at(0)!= '-')) {
-    //         return true;
-    // }
-    // if ((board.at(2).at(0) == board.at(1).at(1)) && (board.at(1).at(1) == board.at(0).at(2)) && (board.at(2).at(0)!= '-')) {
-    //         return true;
-    //     }
-    // for (int i = 0; i < board.size();++i) {
-    //     if ((board.at(i).at(0) == board.at(i).at(1)) && (board.at(i).at(0) == board.at(i).at(2)) && (board.at(i).at(0)!= '-')) {
-    //         return true;
-    //     }
-    //     if ((board.at(0).at(i) == board.at(1).at(i)) && (board.at(0).at(i) == board.at(2).at(i)) && (board.at(i).at(0) != '-')) {
-    //         return true;
-    //     }
-    //     }
-    //     return false;
 }
+
+bool TicTacToe::tilesMatch(unsigned X1, unsigned Y1, unsigned X2, unsigned Y2, unsigned X3, unsigned Y3, char side) const
+{
+    // Tiles compared in pairs
+    return ((board.at(X1).at(Y1) == side) && (board.at(X2).at(Y2) == side) && (board.at(X3).at(Y3) == side));
+}
+void TicTacToe::squaresMatch() 
+{
+    std::cout << 1;
+}
+int TicTacToe::numAltDiagonalWins(char side) const
+{
+    int sumWins{};
+    this->squaresMatch(); // todo
+    for (unsigned i = 2; i < board.size(); ++i)
+    // I gets subtracted with alt diagonal. Start at 2 to stay in range.
+    {
+        // Stop at 2 extra to stay in range.
+        for (unsigned j = 0; j + 2 < board.at(0).size(); ++j)
+        {
+            if (tilesMatch(i, j, i - 1, j + 1, i - 2, j + 2, side))
+            {
+                sumWins++;
+            }
+        }
+    }
+    return sumWins;
+}
+
+int TicTacToe::numMainDiagonalWins(char side) const
+{
+    ;
+    int sumWins{};
+    for (unsigned i = 0; i + 2 < board.size(); ++i)
+    {
+        for (unsigned j = 0; j + 2 < board.at(0).size(); ++j)
+        {
+            if (tilesMatch(i, j, i + 1, j + 1, i + 2, j + 2, side))
+            {
+                sumWins++;
+            }
+        }
+    }
+    return sumWins;
+}
+int TicTacToe::numHorizontalWins(char side) const
+{
+    int sumWins{};
+    for (unsigned i = 0; i + 2 < board.size(); ++i)
+    {
+        // All rows before last 2 have 3 consecutive elements checked
+        for (unsigned j = 0; j < board.at(0).size(); ++j)
+        {
+            // Check in each column
+            if (tilesMatch(i, j, i + 1, j, i + 2, j, side))
+            {
+                sumWins++;
+            }
+        }
+        
+    }
+    return sumWins;
+}
+    int TicTacToe::numVerticalWins(char side) const
+    {
+        int sumWins{};
+        for (unsigned i = 0; i < board.size(); ++i)
+        {
+            // Verticals for all rows
+            for (unsigned j = 0; j + 2 < board.at(0).size(); ++j)
+            {
+                // All columns before last 2 have 3 extra checked.
+                if (this->tilesMatch(i, j, i, j + 1, i, j + 2, side))
+                {
+                    sumWins++;
+                }
+            }
+        }
+        return sumWins;
+    }
 void TicTacToe::display() const
 {
     unsigned int i{};
@@ -132,27 +146,48 @@ void TicTacToe::display() const
     {
         for (unsigned j = 0; j < board[i].size(); ++j)
         {
-            std::cout << board[i][j];
+            std::cout << board.at(i).at(j);
         }
         std::cout << std::endl;
     }
     std::cout << std::endl;
 }
-int TicTacToe::playMove(Coordinates location) {
-char input;
-if (turnNumber % 2 == 1) {
-    input = 'X';
+int TicTacToe::playMove(const Coordinates &location)
+{
+    char input;
+    if (turnNumber % 2 == 1)
+    {
+        input = 'X';
+    }
+    else
+    {
+        input = 'O';
+    }
+    if (!isValidInput(location))
+    {
+        return -2;
+    }
+    if (board.at(location.row).at(location.col) != '-')
+    {
+        return -1;
+    }
+    board.at(location.row).at(location.col) = input;
+    turnNumber++;
+    return 0;
 }
-else {
-    input = 'O';
-}
-if (!isValidInput(location)) {
-    return 2;
-}
-if (board.at(location.row).at(location.col) != '-') {
-    return 1;
-}
-board.at(location.row).at(location.col) = input;
-turnNumber++;
-return 0;
+
+bool TicTacToe::empty() const
+{
+    for (unsigned i = 0; i < board.size(); ++i)
+    {
+        for (unsigned j = 0; j < board.at(i).size(); ++j)
+        {
+            if (board.at(i).at(j) != '-')
+            {
+                return false;
+            }
+        }
+    }
+    // All squares are dashes
+    return true;
 }

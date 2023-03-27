@@ -3,10 +3,10 @@
 void unitTest() {
     TicTacToe t1 = TicTacToe(3);
     std::cout << "Initialized Board successfully!" << std::endl;
-    assert(t1.boardFull() == false);
+    assert(not t1.boardFull());
     assert(t1.board.size() == 3);
     assert(t1.getTurnNumber() == 1);
-    assert(t1.numWins('O') == 0); // Erroring Out. Out of range because 3 is used with at.
+    assert(t1.numWins('O') == 0); 
     Coordinates loc = Coordinates(1,1);
     t1.playMove(loc);
     assert(t1.board.at(1).at(1) == 'X');
@@ -19,7 +19,47 @@ void unitTest() {
     t1.playMove(Coordinates(2,2)); // X
     assert(t1.numWins('X') == 1);
     assert(t1.numWins('O') == 0);
-    t1.playMove(Coordinates());
+    t1.newGame();
+    assert(t1.empty());
+    assert(t1.getTurnNumber() == 1);
+    // Test vertical check for win
+    t1.playMove(Coordinates(0,0));
+    t1.playMove(Coordinates(1,0));
+    t1.playMove(Coordinates(0,1));
+    t1.playMove(Coordinates(1,1));
+    t1.playMove(Coordinates(0,2));
+    assert(t1.numWins('X') == 1);
+    assert(t1.numWins('O') == 0);
+    t1.playMove(Coordinates(1,2));
+    assert(t1.numWins('O') == 1);
+    assert(not t1.boardFull());
+    t1.playMove(Coordinates(2,0));
+    t1.playMove(Coordinates(2,1));
+    t1.playMove(Coordinates(2,2));
+    assert(t1.boardFull());
+    assert(t1.numWins('X') == 1);
+    assert(t1.numWins('O') == 1);
+    t1.newGame();
+    assert(t1.empty());
+    // Testing for 5x5 now
+    TicTacToe t2 = TicTacToe(5);
+    t2.display();
+    assert(t2.empty());
+    assert(t2.getVectorSize() == 5);
+    t2.playMove(Coordinates(2,2));
+    t2.playMove(Coordinates(2,1));
+    t2.playMove(Coordinates(1,1));
+    t2.playMove(Coordinates(1,2));
+    t2.playMove(Coordinates(0,0));
+    t2.display();
+    assert(t2.numWins('X') == 1);
+    assert(t2.numWins('O') == 0);
+    t2.playMove(Coordinates(2,3));
+    t2.playMove(Coordinates(3,1));
+    t2.playMove(Coordinates(1,1));
+    t2.playMove(Coordinates(1,1));
+    t2.display();
+
     std::cout << "All tests passed successfully!" << std::endl;
 }
 Coordinates getUserPos(Coordinates location) {

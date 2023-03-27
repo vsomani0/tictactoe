@@ -17,15 +17,18 @@ void newGame();
 int getVectorSize() const { return board.size(); }
 int getTurnNumber() const;
 int numWins(char) const;
+int playMove(const Coordinates& location);
 bool boardFull() const;
-int playMove(Coordinates location);
 void display() const;
+bool empty() const;
+
 
 protected: 
 
 std::vector<std::vector<char>> board;
 unsigned turnNumber;
-bool isValidInput(Coordinates location) const;
+bool isValidInput(const Coordinates& location) const;
+bool tilesMatch(unsigned X1, unsigned Y1, unsigned X2, unsigned Y2, unsigned X3, unsigned Y3, char side) const;
 int numMainDiagonalWins(char) const;
 int numAltDiagonalWins(char) const;
 int numHorizontalWins(char) const;

@@ -4,7 +4,7 @@
 #include <string>
 class TwoPlayerTTT: public TicTacToe {
 public:
-TwoPlayerTTT(int sides, std::string playerOneName, std::string playerTwoName);
+TwoPlayerTTT(int sides, const std::string& playerOneName, const std::string& playerTwoName);
 void newGame();
 std::string playerToMove() const;
 std::string getPlayerOneName() const;

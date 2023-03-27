@@ -1,11 +1,5 @@
 #include "TicTacToe.h"
 
-void TicTacToe::test() {
-    int x;
-    if (x == 0) {
-        x = 1;
-    }
-}
 TicTacToe::TicTacToe(int sides)
 {
     board = std::vector<std::vector<char>>(sides, std::vector<char>(sides));
@@ -64,14 +58,9 @@ bool TicTacToe::tilesMatch(unsigned X1, unsigned Y1, unsigned X2, unsigned Y2, u
     // Tiles compared in pairs
     return ((board.at(X1).at(Y1) == side) && (board.at(X2).at(Y2) == side) && (board.at(X3).at(Y3) == side));
 }
-void TicTacToe::squaresMatch() 
-{
-    std::cout << 1;
-}
 int TicTacToe::numAltDiagonalWins(char side) const
 {
     int sumWins{};
-    this->squaresMatch(); // todo
     for (unsigned i = 2; i < board.size(); ++i)
     // I gets subtracted with alt diagonal. Start at 2 to stay in range.
     {

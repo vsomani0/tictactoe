@@ -3,7 +3,7 @@
 void unitTest() {
     TicTacToe t1 = TicTacToe(3);
     std::cout << "Initialized Board successfully!" << std::endl;
-    assert(not t1.boardFull());
+    assert(!t1.boardFull());
     assert(t1.board.size() == 3);
     assert(t1.getTurnNumber() == 1);
     assert(t1.numWins('O') == 0); 
@@ -32,7 +32,7 @@ void unitTest() {
     assert(t1.numWins('O') == 0);
     t1.playMove(Coordinates(1,2));
     assert(t1.numWins('O') == 1);
-    assert(not t1.boardFull());
+    assert(!t1.boardFull());
     t1.playMove(Coordinates(2,0));
     t1.playMove(Coordinates(2,1));
     t1.playMove(Coordinates(2,2));

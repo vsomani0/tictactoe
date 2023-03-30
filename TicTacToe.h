@@ -18,6 +18,7 @@ int getVectorSize() const { return board.size(); }
 int getTurnNumber() const;
 int numWins(char) const;
 int playMove(const Coordinates& location);
+int playMove(unsigned i, unsigned j) { return playMove(Coordinates(i, j)); }
 bool boardFull() const;
 void display() const;
 bool empty() const;

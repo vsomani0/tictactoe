@@ -38,11 +38,11 @@ void TicTacToe::newGame()
 }
 bool TicTacToe::isValidInput(const Coordinates &location) const
 {
-    if (location.row < 0 || location.row > board.size())
+    if (location.row < 0 || location.row >= board.size())
     {
         return false;
     }
-    if (location.col < 0 || location.col > board.size())
+    if (location.col < 0 || location.col >= board.size())
     {
         return false;
     }
@@ -92,7 +92,7 @@ int TicTacToe::numMainDiagonalWins(char side) const
     }
     return sumWins;
 }
-int TicTacToe::numHorizontalWins(char side) const
+int TicTacToe::numVerticalWins(char side) const
 {
     int sumWins{};
     for (unsigned i = 0; i + 2 < board.size(); ++i)
@@ -110,7 +110,7 @@ int TicTacToe::numHorizontalWins(char side) const
     }
     return sumWins;
 }
-    int TicTacToe::numVerticalWins(char side) const
+    int TicTacToe::numHorizontalWins(char side) const
     {
         int sumWins{};
         for (unsigned i = 0; i < board.size(); ++i)

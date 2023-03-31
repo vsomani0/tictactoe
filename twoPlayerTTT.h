@@ -6,12 +6,14 @@ class TwoPlayerTTT: public TicTacToe {
 public:
 TwoPlayerTTT(int sides, const std::string& playerOneName, const std::string& playerTwoName);
 void newGame();
-std::string playerToMove() const;
-std::string getPlayerOneName() const;
-std::string getPlayerTwoName() const;
-int numWins(std::string) const; 
+std::string playerToMove() const; // Returns player who can make next move
+std::string playerNotToMove() const; // Returns player who is currently playing but does not move next time.
+std::string getPlayerOneName() const { return playerOneName; } 
+std::string getPlayerTwoName() const { return playerTwoName; }
+int numWins(const std::string&) const; 
 private:
 std::string playerOneName;
 std::string playerTwoName;
+friend void unitTest();
 };
 #endif

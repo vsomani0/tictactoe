@@ -7,16 +7,17 @@ if (turnNumber % 2 == 1) {
 }
 return playerTwoName;
 }
-std::string TwoPlayerTTT::getPlayerOneName() const {
-    return playerOneName;
-}
-std::string TwoPlayerTTT::getPlayerTwoName() const {
+std::string TwoPlayerTTT::playerNotToMove() const {
+if (turnNumber % 2 == 1) {
     return playerTwoName;
 }
+return playerOneName;
+}
+
 void TwoPlayerTTT::newGame() {
     TicTacToe::newGame();
 }
-int TwoPlayerTTT::numWins(std::string playerName) const {
+int TwoPlayerTTT::numWins(const std::string& playerName) const {
 if (playerName == playerOneName) {
     return TicTacToe::numWins('X');
 }

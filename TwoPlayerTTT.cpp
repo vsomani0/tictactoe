@@ -1,4 +1,4 @@
-#include "TwoPlayerTTT.h"
+#include "twoPlayerTTT.h"
 
 TwoPlayerTTT::TwoPlayerTTT(int sides, const std::string& playerOneName, const std::string& playerTwoName): TicTacToe(sides), playerOneName(playerOneName), playerTwoName(playerTwoName){}
 std::string TwoPlayerTTT::playerToMove() const {

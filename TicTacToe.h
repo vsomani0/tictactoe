@@ -26,7 +26,7 @@ bool empty() const;
 
 protected: 
 
-std::vector<std::vector<char>> board;
+std::vector<std::vector<char> > board;
 unsigned turnNumber;
 bool isValidInput(const Coordinates& location) const;
 bool tilesMatch(unsigned X1, unsigned Y1, unsigned X2, unsigned Y2, unsigned X3, unsigned Y3, char side) const;

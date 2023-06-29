@@ -2,7 +2,7 @@
 
 TicTacToe::TicTacToe(int sides)
 {
-    board = std::vector<std::vector<char>>(sides, std::vector<char>(sides));
+    board = std::vector<std::vector<char> >(sides, std::vector<char>(sides));
     for (unsigned y = 0; y < board.size(); y++)
     {
         for (unsigned x = 0; x < board[y].size(); x++)
@@ -60,7 +60,7 @@ bool TicTacToe::tilesMatch(unsigned X1, unsigned Y1, unsigned X2, unsigned Y2, u
 }
 int TicTacToe::numAltDiagonalWins(char side) const
 {
-    int sumWins{};
+    int sumWins = 0;
     for (unsigned i = 2; i < board.size(); ++i)
     // I gets subtracted with alt diagonal. Start at 2 to stay in range.
     {
@@ -79,7 +79,7 @@ int TicTacToe::numAltDiagonalWins(char side) const
 int TicTacToe::numMainDiagonalWins(char side) const
 {
     ;
-    int sumWins{};
+    int sumWins = 0;
     for (unsigned i = 0; i + 2 < board.size(); ++i)
     {
         for (unsigned j = 0; j + 2 < board.at(0).size(); ++j)
@@ -94,7 +94,7 @@ int TicTacToe::numMainDiagonalWins(char side) const
 }
 int TicTacToe::numVerticalWins(char side) const
 {
-    int sumWins{};
+    int sumWins = 0;
     for (unsigned i = 0; i + 2 < board.size(); ++i)
     {
         // All rows before last 2 have 3 consecutive elements checked
@@ -112,7 +112,7 @@ int TicTacToe::numVerticalWins(char side) const
 }
     int TicTacToe::numHorizontalWins(char side) const
     {
-        int sumWins{};
+        int sumWins = 0;
         for (unsigned i = 0; i < board.size(); ++i)
         {
             // Verticals for all rows
@@ -129,8 +129,8 @@ int TicTacToe::numVerticalWins(char side) const
     }
 void TicTacToe::display() const
 {
-    unsigned int i{};
-    unsigned int j{};
+    unsigned int i = 0;
+    unsigned int j = 0;
     for (i = 0; i < board.size(); ++i)
     {
         for (unsigned j = 0; j < board[i].size(); ++j)

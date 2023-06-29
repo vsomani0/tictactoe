@@ -1,4 +1,4 @@
-#include "TwoPlayerTTT.h"
+#include "twoPlayerTTT.h"
 #include <cassert>
 #include <cctype>
 
@@ -154,14 +154,14 @@ TwoPlayerTTT initializeGame()
 {
     // Initialize a TwoPlayerTTT game, taking user inputs for player names, board sizes, and quickend.
     std::cout << "Enter Player 1 name" << std::endl;
-    std::string name{};
+    std::string name = "";
     // Ignore stray newlines
     std::cin.ignore();
     std::getline(std::cin, name);
     std::cout << "Enter Player 2 name" << std::endl;
-    std::string name2{};
+    std::string name2 = "";
     std::getline(std::cin, name2);
-    int numRows{};
+    int numRows = 0;
     std::cout << "How many rows do you want to use?" << std::endl;
     std::cin >> numRows;
     TwoPlayerTTT game = TwoPlayerTTT(numRows, name, name2);
@@ -171,7 +171,7 @@ TwoPlayerTTT initializeGame()
 void playQuickEnd(TwoPlayerTTT &game)
 {
     Coordinates location;
-    int moveSuccess{};
+    int moveSuccess = 0;
     while (!game.boardFull())
     {
         game.display();
@@ -202,7 +202,7 @@ void playQuickEnd(TwoPlayerTTT &game)
 void playNonQuickEnd(TwoPlayerTTT &game)
 {
     Coordinates location;
-    int moveSuccess{};
+    int moveSuccess = 0;
     while (!game.boardFull())
     {
         game.display();
@@ -251,7 +251,7 @@ int main()
     std::cout << "Do you want the game to end as soon as one player gets a TicTacToe, and not wait until the whole board is full? Type \'yes\' to make the game end with one TicTacToe" << std::endl;
     std::string gameEnd;
     std::cin >> gameEnd;
-    bool quickEnd{0}; // Do the remaining quickEnd thing
+    bool quickEnd = 0; // Do the remaining quickEnd thing
     if (getCasefold(gameEnd) == "yes")
     {
         quickEnd = 1;
